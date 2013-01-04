@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Pong
 {
@@ -9,7 +10,7 @@ namespace Pong
 		public Vector2 Speed;
 		public Vector2 Direction;
 		
-		public Ball (Game game) : base (game)
+		public Ball (Game game, SpriteBatch spriteBatch) : base (game, spriteBatch)
 		{
 			Speed = new Vector2 (100, 100);
 		}
@@ -26,12 +27,15 @@ namespace Pong
 				Direction.Y = 1;
 			if (Position.Y + Size.Height >= GraphicsDevice.Viewport.Height)
 				Direction.Y = -1;
-			if (Position.X <= 0) {
-				Direction.X = 2;
+			if (Position.X <= 0 && Position.X != -20) {
+				Direction = new Vector2 (0, 0);
+				Position = new Vector2 (-20, 0);
 				Speed = new Vector2 (100, 100);
 			}
-			if (Position.X + Size.Width >= GraphicsDevice.Viewport.Width) {
-				Direction.X = -2;
+ 			if (Position.X + Size.Width >= GraphicsDevice.Viewport.Width && 
+			    Position.X != GraphicsDevice.Viewport.Width + 10) {
+				Direction = new Vector2 (0, 0);
+				Position = new Vector2 (GraphicsDevice.Viewport.Width + 10, 0);
 				Speed = new Vector2 (100, 100);
 			}
 			base.Update (gameTime, Speed, Direction);

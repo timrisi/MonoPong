@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Pong
 {
@@ -9,7 +10,7 @@ namespace Pong
 		Vector2 speed;
 		public Vector2 Direction;
 
-		public Paddle (Game game) : base (game)
+		public Paddle (Game game, SpriteBatch spriteBatch) : base (game, spriteBatch)
 		{
 			speed = new Vector2 (0, 100);
 		}

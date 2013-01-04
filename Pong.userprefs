@@ -1,23 +1,41 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pong/Game1.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pong/ActionScreen.cs">
     <Files>
       <File FileName="Pong/Main.cs" Line="31" Column="14" />
-      <File FileName="Pong/Game1.cs" Line="103" Column="68" />
+      <File FileName="Pong/Game1.cs" Line="109" Column="30" />
+      <File FileName="Pong/Sprite.cs" Line="15" Column="3" />
+      <File FileName="Pong/Paddle.cs" Line="13" Column="31" />
+      <File FileName="Pong/Ball.cs" Line="13" Column="34" />
+      <File FileName="Pong/Menu.cs" Line="110" Column="1" />
+      <File FileName="Pong/GameScreen.cs" Line="29" Column="1" />
+      <File FileName="Pong/StartScreen.cs" Line="24" Column="39" />
+      <File FileName="Pong/ActionScreen.cs" Line="131" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Pong" expanded="True">
+          <Node name="Pong" expanded="True" selected="True">
             <Node name="Content" expanded="True" />
             <Node name="Properties" expanded="True" />
           </Node>
         </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="ConnectionManagerPad">
+        <State selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Pong/Menu.cs" line="50" offsetX="584" offsetY="784" expression="menuItems" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

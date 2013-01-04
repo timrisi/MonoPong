@@ -33,9 +33,14 @@ namespace Pong
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
 		SpriteFont font;
-		Paddle paddleOne;
-		Paddle paddleTwo;
-		Ball ball;
+
+		KeyboardState keyboardState;
+		KeyboardState oldKeyboardState;
+
+		GameScreen activeScreen;
+		StartScreen startScreen;
+		ActionScreen actionScreen;
+
 		Texture2D rectangle;
 	#endregion
 
@@ -56,15 +61,8 @@ namespace Pong
 		/// </summary>
 		protected override void Initialize ()
 		{
-			paddleOne = new Paddle (this);
-			paddleOne.Direction = new Vector2 (0, 0);
-			paddleTwo = new Paddle (this);
-			paddleTwo.Direction = new Vector2 (0, 0);
-			ball = new Ball (this);
-			ball.Direction = new Vector2 (-2, 1);
 			base.Initialize ();
 		}
-
 
 		/// <summary>
 		/// Load your graphics content.
@@ -74,17 +72,21 @@ namespace Pong
 			// Create a new SpriteBatch, which can be use to draw textures.
 			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
 
-			rectangle = Content.Load<Texture2D> ("WhiteSquare");
-			paddleOne.LoadContent (Content);
-			paddleOne.Position = new Vector2 (20, 20);
-
-			paddleTwo.LoadContent (Content);
-			paddleTwo.Position = new Vector2 (GraphicsDevice.Viewport.Width - 40, GraphicsDevice.Viewport.Height - 100);
-
-			ball.LoadContent (Content);
-			ball.Position = new Vector2 (200, 100);
-
 			font = Content.Load<SpriteFont> ("SpriteFont1");
+			rectangle = Content.Load<Texture2D> ("WhiteSquare");
+
+			startScreen = new StartScreen (this, spriteBatch, font);
+			startScreen.Hide ();
+			Components.Add (startScreen);
+
+			actionScreen = new ActionScreen (this, spriteBatch, Content, font, rectangle);
+			actionScreen.Hide ();
+			Components.Add (actionScreen);
+
+			activeScreen = startScreen;
+			activeScreen.Show ();
+
+			base.LoadContent ();
 		}
 
 	#endregion
@@ -98,44 +100,29 @@ namespace Pong
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update (GameTime gameTime)
 		{
-			KeyboardState keyboardState = Keyboard.GetState ();
-			// TODO: Add your update logic here		
-			paddleOne.Update (gameTime);
-			paddleTwo.Update (gameTime);
-			ball.Update (gameTime);
+			keyboardState = Keyboard.GetState ();
 
-			if (keyboardState.IsKeyDown (Keys.W))
-				paddleOne.Direction.Y = -1;
-			else if (keyboardState.IsKeyDown (Keys.S))
-				paddleOne.Direction.Y = 1;
-			else
-				paddleOne.Direction.Y = 0;
-			/*if (ball.Position.Y - 30 > paddleOne.Position.Y)
-				paddleOne.Direction.Y = 1;
-			else
-				paddleOne.Direction.Y = -1;*/
-
-			if (keyboardState.IsKeyDown (Keys.Up))
-			    paddleTwo.Direction.Y = -1;
-			else if (keyboardState.IsKeyDown (Keys.Down))
-				paddleTwo.Direction.Y = 1;
-			else
-				paddleTwo.Direction.Y = 0;
-			/*if (ball.Position.Y - 30 > paddleTwo.Position.Y)
-				paddleTwo.Direction.Y = 1;
-			else
-				paddleTwo.Direction.Y = -1;*/
-			
-			if (ball.intersects (paddleOne)) {
-				ball.Direction.X = 2;
-				ball.Speed = ball.Speed * new Vector2 (1.05f, 1.05f);
+			if (activeScreen == startScreen) {
+				if (CheckKey (Keys.Enter)) {
+					activeScreen.Hide ();
+					actionScreen.NumPlayers = startScreen.SelectedIndex + 1;
+					actionScreen.NewGame ();
+					activeScreen = actionScreen;
+					activeScreen.Show ();
+				}
 			}
-			if (ball.intersects (paddleTwo)) {
-				ball.Direction.X = -2;
-				ball.Speed = ball.Speed * new Vector2 (1.05f, 1.05f);
+
+			if (activeScreen == actionScreen) {
+				if (CheckKey (Keys.Escape) || (CheckKey (Keys.Space) && actionScreen.GameOver)) {
+					activeScreen.Hide ();
+					activeScreen = startScreen;
+					activeScreen.Show ();
+				}
 			}
 
 			base.Update (gameTime);
+
+			oldKeyboardState = keyboardState;
 		}
 
 		/// <summary>
@@ -148,26 +135,19 @@ namespace Pong
 			graphics.GraphicsDevice.Clear (Color.Black);
 
 			spriteBatch.Begin ();
-			/*spriteBatch.Draw (rectangle, new Vector2 (20, 20), new Rectangle (0, 0, 20, 80), Color.White);
-			spriteBatch.Draw (rectangle, 
-			                  new Vector2 (GraphicsDevice.Viewport.Width - 40,
-			                               GraphicsDevice.Viewport.Height - 100),
-			                  new Rectangle (0, 0, 20, 80),
-			                  Color.White);*/
-			paddleOne.Draw (spriteBatch);
-			paddleTwo.Draw (spriteBatch);
-			ball.Draw (spriteBatch);
-
-			for (var y = 5; y <= GraphicsDevice.Viewport.Height - 10; y += 20)
+			for (var y = 5; y <= GraphicsDevice.Viewport.Height - 10; y += 20) {
 				spriteBatch.Draw (rectangle, new Vector2 (GraphicsDevice.Viewport.Width / 2 - 2, y),
 				                  new Rectangle (0, 0, 4, 10), Color.White);
-			spriteBatch.DrawString (font, "0", new Vector2 (GraphicsDevice.Viewport.Width / 2 - 40, 15), Color.White);
-			spriteBatch.DrawString (font, "0", new Vector2 (GraphicsDevice.Viewport.Width / 2 + 22, 15), Color.White);
-			spriteBatch.End ();
-			//TODO: Add your drawing code here
+			}
 			base.Draw (gameTime);
+				
+			spriteBatch.End ();
 		}
-
 	#endregion
+
+		bool CheckKey(Keys theKey)
+		{
+			return keyboardState.IsKeyUp(theKey) && oldKeyboardState.IsKeyDown(theKey);
+		}
 	}
 }

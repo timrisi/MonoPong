@@ -10,39 +10,16 @@ namespace Pong
 {
     public class Sprite : DrawableGameComponent
     {
-        // The current position of the sprite
         public Vector2 Position;
-
-        // The texture object used when drawing the sprite
-        Texture2D spriteTexture;
-
-        //The size of the Sprite
-        public Rectangle Size;
- 
-        //Used to size the Sprite up or down from the original image
-		private float scale = 1.0f;
-		public float Scale {
-			get { return scale; }
-			set { 
-				scale = value;
-				//Recalculate the Size of the Sprite with the new scale
-				Size = new Rectangle(0, 0, (int)(Source.Width * Scale), (int)(Source.Height * Scale));
-			}
-		}
+		public Rectangle Size;
+		
+		SpriteBatch spriteBatch;
+		Texture2D spriteTexture;
 
 		//The asset name for the Sprite's Texture
 		public string AssetName;
 
-		Rectangle source;
-		public Rectangle Source {
-			get { return source; }
-			set {
-				source = value;
-				Size = new Rectangle(0, 0, (int)(source.Width * Scale), (int)(source.Height * Scale));
-			}
-		}
-
-		public Sprite (Game game) : base (game)
+		public Sprite (Game game, SpriteBatch spriteBatch) : base (game)
 		{
 		}
 
@@ -51,16 +28,13 @@ namespace Pong
         {
 			AssetName = assetName;
             spriteTexture = contentManager.Load<Texture2D>(assetName);
-            Size = new Rectangle(0, 0, (int)(spriteTexture.Width * Scale), (int)(spriteTexture.Height * Scale));
-			Source = new Rectangle(0, 0, spriteTexture.Width, spriteTexture.Height);
         }
 
         //Draw the sprite to the screen
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(spriteTexture, Position,
-               Size, Color.White,
-               0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
+               Size, Color.White);
         }
 
 		//Update the Sprite and change it's position based on the passed in speed, direction and elapsed time.
