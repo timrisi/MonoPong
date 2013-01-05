@@ -12,7 +12,7 @@ namespace Pong
 
 		public Paddle (Game game, SpriteBatch spriteBatch) : base (game, spriteBatch)
 		{
-			speed = new Vector2 (0, 100);
+			speed = new Vector2 (0, 150);
 		}
 
 		public void LoadContent (ContentManager contentManager)

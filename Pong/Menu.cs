@@ -59,8 +59,8 @@ namespace Pong
 					height += 5;
 			}
 
-			position = new Vector2 ((GraphicsDevice.Viewport.Width - width) / 2,
-			                        (GraphicsDevice.Viewport.Height - height) / 2);
+			position = new Vector2 ((Game.GraphicsDevice.Viewport.Width - width) / 2,
+			                        (Game.GraphicsDevice.Viewport.Height - height) / 2);
 		}
 
 		bool CheckKey(Keys theKey)

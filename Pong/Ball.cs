@@ -24,9 +24,9 @@ namespace Pong
 		public override void Update (GameTime gameTime)
 		{
 			if (Position.Y <= 0)
-				Direction.Y = 1;
+				Direction.Y = -Direction.Y;
 			if (Position.Y + Size.Height >= GraphicsDevice.Viewport.Height)
-				Direction.Y = -1;
+				Direction.Y = -Direction.Y;
 			if (Position.X <= 0 && Position.X != -20) {
 				Direction = new Vector2 (0, 0);
 				Position = new Vector2 (-20, 0);

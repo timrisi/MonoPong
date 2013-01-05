@@ -106,17 +106,21 @@ namespace Pong
 					else
 						paddleTwo.Direction.Y = 0;
 				} else {
-					if (paddleTwo.Position.Y + 35 > ball.Position.Y)
+					if ((int) paddleTwo.Position.Y + 30 > (int) ball.Position.Y)
 						paddleTwo.Direction.Y = -1;
-					else
+					else if ((int) paddleTwo.Position.Y + 40 < (int) ball.Position.Y)
 						paddleTwo.Direction.Y = 1;
+					else
+						paddleTwo.Direction.Y = 0;
 				}
 
 				if (ball.intersects (paddleOne)) {
+					ball.Direction.Y = getDirection (paddleOne);
 					ball.Direction.X = 2;
 					ball.Speed = ball.Speed * new Vector2 (1.05f, 1.05f);
 				}
 				if (ball.intersects (paddleTwo)) {
+					ball.Direction.Y = getDirection (paddleTwo);
 					ball.Direction.X = -2;
 					ball.Speed = ball.Speed * new Vector2 (1.05f, 1.05f);
 				}
@@ -141,6 +145,27 @@ namespace Pong
 			}
 
 			oldKeyboardState = keyboardState;
+		}
+
+		int getDirection (Paddle paddle)
+		{
+			float originY = paddle.Position.Y;
+			float ballCenter = ball.Position.Y + ball.Size.Height / 2;
+			float paddleLocation = ballCenter - originY;
+			int direction;
+			
+			if (paddleLocation < paddle.Size.Height / 5)
+				direction = -2;
+			else if (paddleLocation < paddle.Size.Height * 2 / 5)
+				direction = -1;
+			else if (paddleLocation <= paddle.Size.Height * 3 / 5)
+				direction = 0;
+			else if (paddleLocation <= paddle.Size.Height * 4 / 5)
+				direction = 1;
+			else
+				direction = 2;
+
+			return direction;
 		}
 
 		public override void Draw (GameTime gameTime)

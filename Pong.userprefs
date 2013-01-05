@@ -1,23 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Pong/ActionScreen.cs">
     <Files>
-      <File FileName="Pong/Main.cs" Line="31" Column="14" />
-      <File FileName="Pong/Game1.cs" Line="109" Column="30" />
       <File FileName="Pong/Sprite.cs" Line="15" Column="3" />
-      <File FileName="Pong/Paddle.cs" Line="13" Column="31" />
-      <File FileName="Pong/Ball.cs" Line="13" Column="34" />
-      <File FileName="Pong/Menu.cs" Line="110" Column="1" />
+      <File FileName="Pong/Paddle.cs" Line="15" Column="31" />
+      <File FileName="Pong/Ball.cs" Line="15" Column="28" />
+      <File FileName="Pong/Menu.cs" Line="63" Column="30" />
       <File FileName="Pong/GameScreen.cs" Line="29" Column="1" />
       <File FileName="Pong/StartScreen.cs" Line="24" Column="39" />
-      <File FileName="Pong/ActionScreen.cs" Line="131" Column="22" />
+      <File FileName="Pong/ActionScreen.cs" Line="106" Column="3" />
+      <File FileName="Pong/Info.plist" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Pong" expanded="True" selected="True">
+          <Node name="Pong" expanded="True">
             <Node name="Content" expanded="True" />
             <Node name="Properties" expanded="True" />
+            <Node name="ActionScreen.cs" selected="True" />
           </Node>
         </State>
       </Pad>
