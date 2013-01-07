@@ -114,12 +114,12 @@ namespace Pong
 						paddleTwo.Direction.Y = 0;
 				}
 
-				if (ball.intersects (paddleOne)) {
+				if (ball.Size.Intersects (paddleOne.Size)) {
 					ball.Direction.Y = getDirection (paddleOne);
 					ball.Direction.X = 2;
 					ball.Speed = ball.Speed * new Vector2 (1.05f, 1.05f);
 				}
-				if (ball.intersects (paddleTwo)) {
+				if (ball.Size.Intersects (paddleTwo.Size)) {
 					ball.Direction.Y = getDirection (paddleTwo);
 					ball.Direction.X = -2;
 					ball.Speed = ball.Speed * new Vector2 (1.05f, 1.05f);

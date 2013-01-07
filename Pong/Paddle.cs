@@ -12,13 +12,14 @@ namespace Pong
 
 		public Paddle (Game game, SpriteBatch spriteBatch) : base (game, spriteBatch)
 		{
+			Position = new Vector2 (0, 0);
 			speed = new Vector2 (0, 150);
 		}
 
 		public void LoadContent (ContentManager contentManager)
 		{
 			base.LoadContent (contentManager, "WhiteSquare");
-			Size = new Rectangle (0, 0, 20, 80);
+			Size = new Rectangle ((int) Position.X, (int) Position.Y, 20, 80);
 		}
 
 		public override void Update (GameTime gameTime)

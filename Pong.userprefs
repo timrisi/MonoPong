@@ -1,15 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pong/ActionScreen.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pong/Ball.cs">
     <Files>
-      <File FileName="Pong/Sprite.cs" Line="15" Column="3" />
-      <File FileName="Pong/Paddle.cs" Line="15" Column="31" />
-      <File FileName="Pong/Ball.cs" Line="15" Column="28" />
+      <File FileName="Pong/Sprite.cs" Line="21" Column="20" />
+      <File FileName="Pong/Paddle.cs" Line="22" Column="50" />
+      <File FileName="Pong/Ball.cs" Line="22" Column="37" />
       <File FileName="Pong/Menu.cs" Line="63" Column="30" />
       <File FileName="Pong/GameScreen.cs" Line="29" Column="1" />
       <File FileName="Pong/StartScreen.cs" Line="24" Column="39" />
-      <File FileName="Pong/ActionScreen.cs" Line="106" Column="3" />
+      <File FileName="Pong/ActionScreen.cs" Line="122" Column="45" />
       <File FileName="Pong/Info.plist" />
+      <File FileName="Pong/Game1.cs" Line="98" Column="27" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,7 +18,7 @@
           <Node name="Pong" expanded="True">
             <Node name="Content" expanded="True" />
             <Node name="Properties" expanded="True" />
-            <Node name="ActionScreen.cs" selected="True" />
+            <Node name="Ball.cs" selected="True" />
           </Node>
         </State>
       </Pad>

@@ -12,13 +12,14 @@ namespace Pong
 		
 		public Ball (Game game, SpriteBatch spriteBatch) : base (game, spriteBatch)
 		{
+			Position = new Vector2 (0, 0);
 			Speed = new Vector2 (100, 100);
 		}
 		
 		public void LoadContent (ContentManager contentManager)
 		{
 			base.LoadContent (contentManager, "WhiteSquare");
-			Size = new Rectangle (0, 0, 10, 10);
+			Size = new Rectangle ((int) Position.X, (int) Position.Y, 10, 10);
 		}
 		
 		public override void Update (GameTime gameTime)
